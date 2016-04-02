@@ -20,7 +20,7 @@ class Sudoku{
 		void flip(int n);
 		void transform();
 
-		void mmap();
+	//	void mmap();
 		void test();
 	
 	private:

@@ -26,6 +26,7 @@ void Sudoku::readIn(){
 	}
 }
 
+
 void Sudoku::check(){
 	int i, j, k, t;
 	for(i=0;i<81;i++){
@@ -84,6 +85,8 @@ void Sudoku::solve(){
 	}
 	
 	check();
+	
+	
 
 	for(j=0;j<9;j++){								 //個方格檢查
 		for(i=1;i<10;i++){                           //數字1~9
@@ -253,12 +256,12 @@ void Sudoku::transform(){
 	test();
 }
 
-void Sudoku::mmap(){
+/*void Sudoku::mmap(){
 	int i;
 	for(i=0;i<81;i++){
 		map[i] = (i/9)+1;
 	}
-}
+}*/
 void Sudoku::test(){
 	int i;
 	for(i=0;i<81;i++){
