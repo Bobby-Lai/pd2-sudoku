@@ -26,7 +26,6 @@ void Sudoku::readIn(){
 	}
 }
 
-
 void Sudoku::check(){
 	int i, j, k, t;
 	for(i=0;i<81;i++){
@@ -73,20 +72,22 @@ void Sudoku::solve(){
 	int i, j, k, t;
 	for(i=0;i<81;i++){
 		if(map[i]!=0){
-			for(j=1;j<10;j++){
-				a[i][j] = 0;
-				a[i][map[i]] = map[i];
-			}
-		}
-		else{
-			for(j=1;j<10;j++)
-				a[i][j] = j;	
-		}
+	        for(j=1;j<10;j++){
+		        a[i][j] = 0;
+	    	    a[i][map[i]] = map[i];
+       		}
+   		}
+        else{
+	        for(j=1;j<10;j++)
+	            a[i][j] = j;
+	        }
 	}
-	
 	check();
-	
-	
+	solveMethod();
+}
+
+void Sudoku::solveMethod(){
+	int i, j, k, t;
 
 	for(j=0;j<9;j++){								 //個方格檢查
 		for(i=1;i<10;i++){                           //數字1~9
