@@ -58,6 +58,7 @@ void Sudoku::checkall(){
 	}
 	if (t!=0)
 		solveMethod();
+		t=0;
 	else if (t==0){
 		cout<<endl<<1<<endl;
 		test();
