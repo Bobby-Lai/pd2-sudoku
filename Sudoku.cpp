@@ -83,7 +83,7 @@ void Sudoku::solve(){
 	        }
 	}
 	for(i=0;i<81;i++){
-	check(i);
+		check(i);
 	}
 	for(i=0;i<81;i++){
 		if (map[i]!=0&&a[i][map[i]]==0){
@@ -92,12 +92,13 @@ void Sudoku::solve(){
 		}
 	}
 	solveMethod();
+	checkall();
 }
 
 void Sudoku::solveMethod(){
 	int i, j, k, t;
 
-	for(j=0;j<9;j++){								 //個方格檢查
+	for(j=0;j<9;j++){								 //各方格檢查
 		for(i=1;i<10;i++){                           //數字1~9
 			int t = 0;
 			if (a[(j%3)*3+((j/3)*27)][i]==i){
@@ -163,10 +164,7 @@ void Sudoku::solveMethod(){
 			check(s);
 			}
 		}
-	}
-
-	checkall();
-	
+	}	
 }
 
 void Sudoku::changeNum(int a, int b){
