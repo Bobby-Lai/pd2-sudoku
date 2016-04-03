@@ -10,7 +10,7 @@ class Sudoku{
 	public:
 		void giveQuestion();
 		void readIn();
-		void check();
+		void check(int i);
 		void checkall();
 		void solve();
 		void solveMethod();

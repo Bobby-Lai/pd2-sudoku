@@ -26,30 +26,28 @@ void Sudoku::readIn(){
 	}
 }
 
-void Sudoku::check(){
-	int i, j, k, t;
-	for(i=0;i<81;i++){
-		if(map[i]!=0){
-	        j = map[i];                              //j為題目之值
-	        k = i-((i%9)%3)-9*((i/9)%3);
-	        a[k][j] = 0;                             //題目所屬之方格的其他空格除去題目之值的可能
-	        a[k+1][j] = 0;
-	        a[k+2][j] = 0;
-	        a[k+9][j] = 0;
-	        a[k+10][j] = 0;
-	        a[k+11][j] = 0;
-	        a[k+18][j] = 0;
-		    a[k+19][j] = 0;
-		    a[k+20][j] = 0;
-		    k = i%9;
-	        for(t=0;t<9;t++)
-		        a[k+(9*t)][j] = 0;                   //題目所屬之縱行的其他空格除去題目之值的可能
-		    k = i/9;
-		    for(t=0;t<9;t++)
-		        a[(k*9)+t][j] = 0;                   //題目所屬之橫行的其他空格除去題目之值的可能
-		    a[i][j] = j;
-		}
-    }
+void Sudoku::check(int i){
+	int j, k, t;
+	if(map[i]!=0){
+	    j = map[i];                              //j為題目之值
+	    k = i-((i%9)%3)-9*((i/9)%3);
+	    a[k][j] = 0;                             //題目所屬之方格的其他空格除去題目之值的可能
+	    a[k+1][j] = 0;
+	    a[k+2][j] = 0;
+	    a[k+9][j] = 0;
+	    a[k+10][j] = 0;
+	    a[k+11][j] = 0;
+	    a[k+18][j] = 0;
+	    a[k+19][j] = 0;
+	    a[k+20][j] = 0;
+	    k = i%9;
+	    for(t=0;t<9;t++)
+	        a[k+(9*t)][j] = 0;                   //題目所屬之縱行的其他空格除去題目之值的可能
+	    k = i/9;
+	    for(t=0;t<9;t++)
+	        a[(k*9)+t][j] = 0;                   //題目所屬之橫行的其他空格除去題目之值的可能
+	    a[i][j] = j;
+	}
 }
 
 void Sudoku::checkall(){
@@ -82,7 +80,9 @@ void Sudoku::solve(){
 	            a[i][j] = j;
 	        }
 	}
-	check();
+	for(i=0;i<81;i++){
+	check(i);
+	}
 	for(i=0;i<81;i++){
 		if (map[i]!=0&&a[i][map[i]]==0){
 			cout<<0;
@@ -125,10 +125,11 @@ void Sudoku::solveMethod(){
 			else if (a[(j%3)*3+((j/3)*27)+20][i]==i){
 				k = (j%3)*3+((j/3)*27)+20;
 				t++;}
-			if (t==1)
+			if (t==1){
 				map[k] = i;
+				check(k);
+			}
 			t = 0;
-			check();
 		}
 	}
 	int s;
@@ -142,9 +143,9 @@ void Sudoku::solveMethod(){
 				}
 			if (t==1)
 				map[s] = i;
+			check(s);
 			}
 		}
-		check();
 	}
 
 	for(j=0;j<9;j++){
@@ -157,9 +158,9 @@ void Sudoku::solveMethod(){
 				}
 			if (t==1)
 				map[s] = i;
+			check(s);
 			}
 		}
-		check();
 	}
 
 	checkall();
