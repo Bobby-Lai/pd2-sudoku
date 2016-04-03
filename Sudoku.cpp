@@ -83,6 +83,12 @@ void Sudoku::solve(){
 	        }
 	}
 	check();
+	for(i=0;i<81;i++){
+		if (map[i]!=0&&a[i][map[i]]==0){
+			cout<<0;
+			break;
+		}
+	}
 	solveMethod();
 }
 
@@ -257,12 +263,6 @@ void Sudoku::transform(){
 	test();
 }
 
-/*void Sudoku::mmap(){
-	int i;
-	for(i=0;i<81;i++){
-		map[i] = (i/9)+1;
-	}
-}*/
 void Sudoku::test(){
 	int i;
 	for(i=0;i<81;i++){
