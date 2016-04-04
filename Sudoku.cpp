@@ -46,7 +46,10 @@ void Sudoku::check(int i){
 	    k = i/9;
 	    for(t=0;t<9;t++)
 	        a[(k*9)+t][j] = 0;                   //題目所屬之橫行的其他空格除去題目之值的可能
-	    a[i][j] = j;
+	    for(j=1;j<10;j++){
+			a[i][j] = 0;
+			a[i][map[i]] = map[i];
+		}
 	}
 }
 
