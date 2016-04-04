@@ -90,7 +90,6 @@ void Sudoku::solve(){
 		}
 	}
 	solveMethod();
-	checkall();
 }
 
 void Sudoku::solveMethod(){
@@ -164,7 +163,8 @@ void Sudoku::solveMethod(){
 				check(s);
 			}
 		}
-	}	
+	}
+	checkall();	
 }	
 
 void Sudoku::changeNum(int a, int b){
