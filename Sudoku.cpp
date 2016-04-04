@@ -61,20 +61,18 @@ void Sudoku::checkall(){
 		t=0;
 	}
 	else if (t==0){
-		cout<<endl<<1<<endl;
+		cout<<1<<endl;
 		test();
 	}
-	else
-		cout<<"F**king error!!!";
 }
 
 void Sudoku::solve(){
 	int i, j, k, t;
-	for(i=0;i<81;i++){
-		if(map[i]!=0){
+	for(i=0;i<81;i++){						//建立a[空格位置][數字]，若空格有可能為A數字，
+		if(map[i]!=0){						//則a[空格][A]=A，反之則為0
 	        for(j=1;j<10;j++){
 		        a[i][j] = 0;
-	    	    a[i][map[i]] = map[i];
+	    	    a[i][map[i]] = map[i];		//題目之空格除題目數字之外皆為0
        		}
    		}
         else{
@@ -144,9 +142,10 @@ void Sudoku::solveMethod(){
 					s = (9*k)+j;
 					t++;
 				}
-			if (t==1)
+			}
+			if (t==1){
 				map[s] = i;
-			check(s);
+				check(s);
 			}
 		}
 	}
@@ -159,13 +158,14 @@ void Sudoku::solveMethod(){
 					s = (9*j)+k;
 					t++;
 				}
-			if (t==1)
+			}
+			if (t==1){
 				map[s] = i;
-			check(s);
+				check(s);
 			}
 		}
 	}	
-}
+}	
 
 void Sudoku::changeNum(int a, int b){
 	int i;
@@ -266,8 +266,6 @@ void Sudoku::transform(){
 
 void Sudoku::test(){
 	int i;
-	for(i=0;i<81;i++){
-		printf("%d%c", map[i], (i+1)%9==0?'\n':' ');
-	}
-	cout<<endl;
+	for(i=0;i<81;i++)
+		printf("%d%c", map[i], i%9==8?'\n':' ');
 }
